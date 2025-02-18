@@ -63,3 +63,26 @@ JavaScript is a dynamically typed language. This means that the type of a variab
 */
 
 // const score:Number = 100 // Typescript, datatype mention karna hota hai
+
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// Stack (primitive) and Heap (Non-primitive)
+
+let myYoutubeName = "HisCode"
+let anotherName = myYoutubeName
+anotherName = "NewOne"
+// console.log(myYoutubeName, anotherName);
+
+let userOne = {
+    name : "Himanshu Pandey",
+    email : "Himanshu@google.com",
+    upi : "Himanshu@ybl"
+}
+
+let userTwo = userOne
+
+userTwo.email = "Pandey@google.com"
+
+console.log(userOne.email);
+console.log(userTwo.email);
+
