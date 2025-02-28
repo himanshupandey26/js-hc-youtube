@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>htnml Events </title>
+</head>
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing image</h2>
+    <div >
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li>
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+   </div>
+</body>
+<script>
+    // document.getElementById('owl').onclick = function(){ // Not prefer to use
+    //     alert("owl clicked")
+    // }
+
+    // attachEvent() // used in old time, internet explorer work
+    // jQuery - on // jQuery is a JavaScript Library.While jQuery can still be useful in certain situations in 2025, for most new projects, it's generally considered not the best choice due to the advancement of native JavaScript capabilities and modern frameworks like React, Vue, and Angular, which offer more robust features and better performance
+
+    // Basic Event Properties:
+    // type, timestamp, defaultPrevented
+    // target, toElement, srcElement, currentTarget,
+    // clientX, clientY, screenX, screenY
+    // altkey, ctrlkey, shiftkey, keyCode
+    
+    
+    /*
+      Event Bubbling and Capturing in JavaScript
+      When an event occurs on an element inside another element, the event doesn't just affect that one element. Instead, JavaScript allows the event to propagate (travel) through the DOM in two phases:
+    
+    Capturing Phase (Trickling Down): Event Capturing: Event flows top to bottom (rarely used, needs true flag).
+    Bubbling Phase (Rising Up) : Event Bubbling: Event flows bottom to top (default).
+    
+    Phase	    Default	               Use Case
+    Bubbling 	✅ (default)        	  Useful for event delegation (e.g., handling clicks on dynamic elements inside a list)
+    Capturing	❌ (need true flag)   	Less commonly used, but helpful when you need priority handling before bubbling starts
+    
+    */
+    
+    document.getElementById('images').addEventListener('click', function(e){
+        console.log("clicked inside the ul");
+    }, false) // Bubbling
+    document.getElementById('owl').addEventListener('click', function(e){
+        console.log("owl clicked");
+    }, false)
+
+    // document.getElementById('images').addEventListener('click', function(e){
+    //     console.log("clicked inside the ul");
+    // }, true) //Capturing
+    // document.getElementById('owl').addEventListener('click', function(e){
+    //     console.log("owl clicked");
+    // }, true)
+
+
+/*
+✔ event.stopPropagation() stops further event propagation in both capturing and bubbling phases.
+✔ If called in capturing, the event never reaches the target.
+✔ If called in bubbling, the event never reaches ancestors.
+*/
+ 
+    // document.getElementById('images').addEventListener('click', function(e){
+    //     console.log("clicked inside the ul");
+    // }, false) // Bubbling
+    // document.getElementById('owl').addEventListener('click', function(e){
+    //     console.log("owl clicked");
+    //     e.stopPropagation()
+    // }, false)
+
+    // document.getElementById('images').addEventListener('click', function(e){
+    //     console.log("clicked inside the ul");
+    //     e.stopPropagation()
+    // }, true) //Capturing
+
+    // document.getElementById('owl').addEventListener('click', function(e){
+    //     console.log("owl clicked");
+    // }, true)
+
+    // document.getElementById('google').addEventListener('click',function(e){
+    //     e.preventDefault();
+    //     e.stopPropagation()
+    //     console.log("google clicked");
+    // }, false)
+   
+
+    
+
+    document.querySelector('#images').addEventListener('click', function(e){
+        console.log(e.target.tagName);
+        if (e.target.tagName === 'IMG') {
+            console.log(e.target.id);
+            let removeIt = e.target.parentNode
+            removeIt.remove()
+        }
+    
+        
+    })
+    
+    //removeIt.parentNode.removeChild(removeIt)
+</script>
+</html>
